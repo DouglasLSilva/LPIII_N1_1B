@@ -2,12 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 export interface responseApi {
+  id: number;
   type: string;
-  value: Joke;
-}
-
-export interface Joke {
-  joke: string;
+  setup: string;
+  punchline: string
 }
 
 @Component({
@@ -18,12 +16,15 @@ export interface Joke {
 
 export class Tab1Page {
 
-  piada: string
-  constructor(private http : HttpClient) {}
+  setup: string
+  punchline: string
+  constructor(private http : HttpClient) {this.BuscarNovaPiada()}
 
   BuscarNovaPiada(){
-    this.http.get<responseApi>('http://api.icndb.com/jokes/random').subscribe(data => {
-      this.piada = data.value.joke;
+    this.http.get<responseApi[]>('https://official-joke-api.appspot.com/jokes/programming/random').subscribe(data => {
+      console.log(data);
+      this.setup = data[0].setup;
+      this.punchline = data[0].punchline
     },
     error => {
       alert("Ocorreu um erro ao consultar a API")

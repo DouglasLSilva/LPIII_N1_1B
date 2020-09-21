@@ -1,17 +1,33 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Pokemom TCG
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <h3>Pokemon TCG API</h3>
+        <ion-item>
+          <ion-label position="floating">Nome do Pokemom</ion-label>
+          <ion-input [(ngModel)]="name"></ion-input>
+        </ion-item>
+        </div>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button class="primary" (click)="BuscarPokemom()">Buscar Carta</ion-button>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-list>
+          <ion-item *ngFor="let item of itemsArray">
+              <ion-img height="547" widht="386" [src]="item.imageUrlHiRes" style="margin: 10px;"></ion-img>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
